@@ -1,0 +1,165 @@
+# The three research areas. Used by the home page (figure, summaries) and the Research page.
+#
+# id:       used in links (/research/#id) and as "area" in _data/publications.yml
+# summary:  one sentence for the home page
+# cite:     publication ids cited after the summary
+# figure:   the home-page figure; mode is fixed (compute | labels | encrypted); label, caption and link text are yours
+# intro:    opening paragraph on the Research page
+# projects: each has a title, a status line, optional cite (publication id), and rows of label + text
+
+- id: efficiency
+  title: "Efficiency & optimization"
+  summary: >-
+    Testing what actually makes fine-tuning and inference cheaper, from rank allocation in LoRA to
+    how visual-token pruning in vision-language models is evaluated.
+  cite: [lora-rank]
+  figure:
+    mode: compute
+    label: Limited compute
+    link: More on efficiency and optimization
+    caption: >-
+      Keep the cells that matter most and drop the rest: here, the top fifth. My work tests when
+      savings like this are real, and how to measure them fairly.
+  intro: >-
+    I study methods that make modern AI systems cheaper to adapt and run, including
+    parameter-efficient fine-tuning, pruning and sparsity, and efficient inference for large
+    language and vision-language models. Much of this work asks a simple question: does a popular
+    efficiency idea actually deliver what it promises once it is tested fairly?
+  projects:
+    - title: "Does learned rank allocation help LoRA?"
+      status: "Under review, ACL Rolling Review"
+      cite: lora-rank
+      rows:
+        - label: Question
+          text: >-
+            Methods such as AdaLoRA let importance scores decide which layers get more rank, on the
+            assumption that this spends a fixed parameter budget better than giving every layer the
+            same rank. That assumption had rarely been tested with matched controls.
+        - label: Approach
+          text: >-
+            A controlled study covering both standard and shared-parameter low-rank adapters, with
+            every run paired with fixed-rank and random controls.
+        - label: Finding
+          text: >-
+            Learned rank allocation was never detectably better than a fixed rank at the same
+            parameter budget. The choice of importance score mattered mainly when a trained adapter
+            was compressed in one step.
+    - title: "How should we judge visual-token pruning?"
+      status: "Paper in preparation"
+      rows:
+        - label: Question
+          text: >-
+            Pruning methods for vision-language models are usually compared against an “upper
+            bound”: the best subset of image tokens found by searching for a known answer. What does
+            that bound really measure?
+        - label: Approach
+          text: >-
+            Aim the same search at a wrong answer, then check the bounds with a held-out evaluation.
+        - label: Finding
+          text: >-
+            The search makes models confidently report objects that are not in the image, so these
+            bounds reflect how easily a model can be steered rather than what it actually sees. They
+            overstate the remaining headroom by about 30 points.
+
+- id: trustworthy
+  title: "Robust & trustworthy AI"
+  summary: >-
+    Authority bias in LLM-based search engines, and learning from noisy, disagreeing human
+    annotators.
+  cite: [authority-bias, nra-embed]
+  figure:
+    mode: labels
+    label: Noisy labels
+    link: More on robust and trustworthy AI
+    caption: >-
+      Two annotators label every cell. Along the boundaries they genuinely disagree; scattered
+      elsewhere, some labels are simply wrong. My work builds models that keep the disagreement and
+      resist the noise.
+  intro: >-
+    My work in NLP and LLMs looks at how models behave under noisy, subjective or potentially
+    biased conditions: learning from annotator disagreement, modeling subjective human judgments,
+    and studying biases that emerge when AI systems recommend things to people.
+  projects:
+    - title: "Authority bias in LLM-based search engines"
+      status: "EMNLP 2026 (Main Conference)"
+      cite: authority-bias
+      rows:
+        - label: Question
+          text: >-
+            When LLMs act as conversational search engines for academic papers, do they judge a
+            paper on its content or on who wrote it?
+        - label: Approach
+          text: >-
+            Keep each paper’s title and abstract fixed and change only its authority signals: author
+            prestige, venue and citation counts.
+        - label: Finding
+          text: >-
+            Authority bias is substantial and varies widely across models. Prompt-level debiasing
+            only partly helps: models stop mentioning authority much faster than they stop acting on
+            it, so auditing their explanations underestimates the bias.
+    - title: "Learning from disagreement under noise"
+      status: "Findings of EMNLP 2026"
+      cite: nra-embed
+      rows:
+        - label: Question
+          text: >-
+            In subjective tasks such as hate-speech detection, annotators genuinely disagree, and
+            majority voting erases minority perspectives. How well do models that learn from each
+            annotator hold up when the labels are also noisy?
+        - label: Approach
+          text: >-
+            NRA-Embed adds a noise-robust contrastive objective to annotator embeddings.
+        - label: Finding
+          text: >-
+            Its performance is comparable to the state of the art on clean data, and it is more
+            robust as noise increases.
+
+- id: privacy
+  title: "Privacy-preserving ML"
+  summary: >-
+    Making encrypted inference with homomorphic encryption faster and lighter on memory.
+  cite: [mofhei, memory-efficient-he, packing-aware-pruning]
+  figure:
+    mode: encrypted
+    label: Encrypted data
+    link: More on privacy-preserving ML
+    caption: >-
+      The model computes on scrambled cells and never sees the input; only the key holder can read
+      the result. My work makes this kind of encrypted inference faster and lighter on memory.
+  intro: >-
+    Homomorphic encryption lets a model run on data it never sees in the clear, but encrypted
+    inference is still far slower and more memory-hungry than ordinary inference. My work reduces
+    that overhead so encrypted inference becomes practical.
+  projects:
+    - title: "MOFHEI"
+      status: "IEEE TPS 2024"
+      cite: mofhei
+      rows:
+        - label: Approach
+          text: >-
+            A framework that converts pretrained models into a form suited to homomorphic encryption
+            and prunes them in a way that matches how encrypted data is packed.
+        - label: Result
+          text: >-
+            Encrypted-inference latency cut by 9.6× and memory by 4× at negligible accuracy loss.
+            The framework is [open source](https://github.com/inspire-lab/MOFHEI).
+    - title: "Memory-efficient encrypted inference"
+      status: "ACNS 2024"
+      cite: memory-efficient-he
+      rows:
+        - label: Approach
+          text: >-
+            A caching and dynamic weight-loading scheme that reuses recurring values within each
+            layer.
+        - label: Result
+          text: >-
+            Peak memory cut by up to 50× for a 13% runtime cost, so encrypted inference can run on
+            low-cost hardware.
+    - title: "Packing-aware pruning"
+      status: "IEEE S&P 2023 (extended abstract)"
+      cite: packing-aware-pruning
+      rows:
+        - label: Approach
+          text: >-
+            Pruning designed around how fully homomorphic encryption packs data, for faster
+            encrypted inference.

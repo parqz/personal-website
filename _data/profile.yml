@@ -1,0 +1,48 @@
+# Who you are. Shown in the sidebar and on the home page.
+name: Parsa Ghazvinian
+initials: PG
+title: Ph.D. Candidate in Computer Science
+affiliation: Georgia State University
+location: Atlanta, GA
+email: parsa.ghz10@gmail.com
+
+# The large sentence at the top of the home page.
+headline: >-
+  I study how to keep AI efficient and trustworthy when compute is limited,
+  labels are noisy and data must stay private.
+
+# One-line notice on the home page. Delete the text (leave notice: "") to remove it.
+notice: "I’m looking for Summer 2027 research internships."
+
+# Photo: put the file at assets/img/profile.jpg (square crop, about 640 px).
+# Until the file exists, the sidebar shows your initials.
+photo: /assets/img/profile.jpg
+
+links:
+  cv: /assets/cv.pdf
+  scholar: https://scholar.google.com/citations?user=qn7j9xkAAAAJ
+  github: https://github.com/parqz
+  linkedin: https://www.linkedin.com/in/pghazvinian/
+  researchgate: https://www.researchgate.net/profile/Parsa-Ghazvinian
+
+# Short facts beside the bio on the home page (Markdown allowed in value).
+facts:
+  - label: Program
+    value: Ph.D. in Computer Science, Georgia State University, 2022 to present
+  - label: Advisors
+    value: Dr. Rajshekhar Sunderraman and Dr. Yi Ding (University of Tennessee, Knoxville)
+  - label: Lab
+    value: CHAI Center, Georgia State University
+  - label: Graduating
+    value: December 2027 (expected)
+
+# Topics, used for search engines only (schema.org "knowsAbout").
+topics:
+  - Parameter-efficient fine-tuning
+  - Low-rank adaptation (LoRA)
+  - Vision-language models
+  - Model pruning and sparsity
+  - Trustworthy AI
+  - Learning from annotator disagreement
+  - Homomorphic encryption
+  - Encrypted inference

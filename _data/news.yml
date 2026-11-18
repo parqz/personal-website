@@ -1,0 +1,20 @@
+# News, newest first. To add an item, copy two lines to the top and edit them.
+# date: "Nov 2026" style, or just "2026" when the month is unknown. text: Markdown allowed.
+
+- date: "2026"
+  text: "Two papers accepted at EMNLP 2026 (Main and Findings): [authority bias in LLM-based search engines](https://aclanthology.org/2026.emnlp-main.1069/) and [noise-robust learning from annotator disagreement](https://aclanthology.org/2026.findings-emnlp.2078/)."
+
+- date: "2026"
+  text: "Reviewed for IJCNN 2026 and, as a secondary reviewer, for ACL Rolling Review; served on the PoPETs 2026 Artifact Evaluation Committee."
+
+- date: "2025"
+  text: "Received the Student Scholarship Award from the Professional Organization of Iranian Americans (POOIA)."
+
+- date: "2024"
+  text: "MOFHEI appeared at IEEE TPS 2024, with a student travel grant. The code is [open source](https://github.com/inspire-lab/MOFHEI)."
+
+- date: "2024"
+  text: "Paper on memory-efficient encrypted inference with homomorphic encryption published at ACNS 2024."
+
+- date: "2023"
+  text: "Packing-aware pruning for encrypted inference appeared at IEEE S&P 2023 as an extended abstract, with a student travel grant."

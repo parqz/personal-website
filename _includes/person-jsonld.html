@@ -1,0 +1,19 @@
+{%- assign p = site.data.profile -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ p.name | jsonify }},
+  "url": {{ site.url | append: "/" | jsonify }},
+  "image": {% if has_photo %}{{ p.photo | absolute_url | jsonify }}{% else %}{{ "/assets/img/og.png" | absolute_url | jsonify }}{% endif %},
+  "jobTitle": {{ p.title | jsonify }},
+  "email": {{ "mailto:" | append: p.email | jsonify }},
+  "affiliation": { "@type": "CollegeOrUniversity", "name": {{ p.affiliation | jsonify }} },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Georgia State University" },
+    { "@type": "CollegeOrUniversity", "name": "University of Zanjan" }
+  ],
+  "knowsAbout": {{ p.topics | jsonify }},
+  "sameAs": {{ site.social.links | jsonify }}
+}
+</script>

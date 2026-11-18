@@ -1,0 +1,94 @@
+---
+layout: default
+---
+{%- assign p = site.data.profile -%}
+<section class="hero">
+  <p class="statement">{{ p.headline }}</p>
+{% include figure.html %}
+</section>
+
+<section class="block" id="about" aria-label="About">
+  {%- if p.notice and p.notice != "" %}
+  <p class="notice"><span class="cell" aria-hidden="true"></span><span>{{ p.notice }} <a href="{{ p.links.cv | relative_url }}" target="_blank" rel="noopener">Download my CV</a> or <a href="mailto:{{ p.email }}">email me</a>.</span></p>
+  {%- endif %}
+  <div class="about-grid">
+    <div class="prose bio">
+{{ content }}
+    </div>
+    <dl class="facts">
+      {%- for fact in p.facts %}
+      <div><dt>{{ fact.label }}</dt><dd>{{ fact.value | markdownify | remove: '<p>' | remove: '</p>' | strip }}</dd></div>
+      {%- endfor %}
+    </dl>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="block-head">
+    <h2>Research</h2>
+    <a href="{{ '/research/' | relative_url }}">All research</a>
+  </div>
+  <ul class="areas">
+    {%- for area in site.data.research %}
+    <li class="area-row">
+      <span class="cell area-{{ area.id }}" aria-hidden="true"></span>
+      <div>
+        <h3><a href="{{ '/research/' | relative_url }}#{{ area.id }}">{{ area.title }}</a></h3>
+        <p>{{ area.summary }}{% assign keys = area.cite | join: "," %}&nbsp;{% include cite.html keys=keys %}</p>
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="block" id="news">
+  <div class="block-head">
+    <h2>News</h2>
+    <span class="hint">Newest first. Scroll for older.</span>
+  </div>
+  <div class="news" tabindex="0" role="region" aria-label="News, newest first">
+    <ul>
+      {%- for item in site.data.news %}
+      <li><span class="news-date">{{ item.date }}</span><span class="news-text">{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="publications">
+  <div class="block-head">
+    <h2>Selected publications</h2>
+    <a href="{{ '/publications/' | relative_url }}">All publications</a>
+  </div>
+  <ol class="pubs">
+    {%- for pub in site.data.publications %}
+      {%- if pub.selected %}
+{% include pub.html pub=pub n=forloop.index anchor=false %}
+      {%- endif %}
+    {%- endfor %}
+  </ol>
+</section>
+
+{%- if site.posts.size > 0 %}
+<section class="block" id="writing">
+  <div class="block-head">
+    <h2>From the blog</h2>
+    <a href="{{ '/blog/' | relative_url }}">All posts</a>
+  </div>
+  <ul class="post-list post-list-compact">
+    {%- for post in site.posts limit: 3 %}
+    <li>
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+<section class="block" id="contact">
+  <div class="block-head">
+    <h2>Contact</h2>
+  </div>
+  <p class="contact">Email is the best way to reach me: <a href="mailto:{{ p.email }}">{{ p.email }}</a>. You can also find me on <a href="{{ p.links.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>, <a href="{{ p.links.github }}" target="_blank" rel="noopener">GitHub</a> and <a href="{{ p.links.scholar }}" target="_blank" rel="noopener">Google Scholar</a>.</p>
+</section>

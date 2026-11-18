@@ -1,0 +1,54 @@
+{%- assign p = site.data.profile -%}
+{%- comment %} Blog link: always, never, or only once a post exists. {% endcomment -%}
+{%- assign show_blog = false -%}
+{%- if site.blog_in_nav == true -%}{%- assign show_blog = true -%}{%- endif -%}
+{%- if site.blog_in_nav == "auto" and site.posts.size > 0 -%}{%- assign show_blog = true -%}{%- endif -%}
+<aside class="side">
+  <div class="ident">
+    <a class="portrait{% unless has_photo %} portrait-empty{% endunless %}" href="{{ '/' | relative_url }}" aria-label="{{ p.name }}, home">
+      {%- if has_photo %}
+      <img src="{{ p.photo | relative_url }}" alt="Portrait of {{ p.name }}" width="320" height="320">
+      {%- else %}
+      <span class="portrait-mark" aria-hidden="true">{{ p.initials }}</span>
+      {%- endif %}
+      <span class="portrait-cells" aria-hidden="true"><i></i><i></i><i></i></span>
+    </a>
+    <div class="who">
+      {% if page.url == '/' %}<h1 class="name">{{ p.name }}</h1>{% else %}<p class="name"><a href="{{ '/' | relative_url }}">{{ p.name }}</a></p>{% endif %}
+      <p class="role">{{ p.title }}<br>{{ p.affiliation }}<br>{{ p.location }}</p>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Sections">
+    {%- for item in site.data.nav %}
+    <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+    {%- endfor %}
+    {%- if show_blog %}
+    <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+    {%- endif %}
+  </nav>
+
+  <div class="links">
+    <a class="btn btn-cv" href="{{ p.links.cv | relative_url }}" target="_blank" rel="noopener"><svg class="ico"><use href="#i-download"/></svg>Download CV</a>
+    <a class="link-email" href="mailto:{{ p.email }}"><svg class="ico"><use href="#i-mail"/></svg><span>{{ p.email }}</span></a>
+    {%- if p.links.scholar %}
+    <a href="{{ p.links.scholar }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-scholar"/></svg><span>Google Scholar</span></a>
+    {%- endif %}
+    {%- if p.links.github %}
+    <a href="{{ p.links.github }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-github"/></svg><span>GitHub</span></a>
+    {%- endif %}
+    {%- if p.links.linkedin %}
+    <a href="{{ p.links.linkedin }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-linkedin"/></svg><span>LinkedIn</span></a>
+    {%- endif %}
+    {%- if p.links.researchgate %}
+    <a href="{{ p.links.researchgate }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-researchgate"/></svg><span>ResearchGate</span></a>
+    {%- endif %}
+  </div>
+
+  <div class="prefs">
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch between light and dark theme">
+      <svg class="ico ico-moon"><use href="#i-moon"/></svg><svg class="ico ico-sun"><use href="#i-sun"/></svg>
+      <span class="theme-to-dark">Dark theme</span><span class="theme-to-light">Light theme</span>
+    </button>
+  </div>
+</aside>

@@ -1,0 +1,36 @@
+# Degrees, newest first. Shown on the Experience page.
+
+- degree: Ph.D., Computer Science
+  school: Georgia State University
+  place: Atlanta, GA
+  dates: Spring 2022 to present
+  mark: GSU
+  notes:
+    - "Advisors: Dr. Rajshekhar Sunderraman and Dr. Yi Ding"
+    - "Expected graduation: December 2027"
+
+- degree: M.Sc., Computer Science
+  school: Georgia State University
+  place: Atlanta, GA
+  dates: Spring 2022 to Fall 2024
+  mark: GSU
+  notes:
+    - "Awarded en route to the Ph.D."
+
+- degree: M.Sc., Computer Engineering (Software)
+  school: University of Zanjan
+  place: Zanjan, Iran
+  dates: 2017 to 2020
+  mark: UZ
+  notes:
+    - "Thesis: *FDI Attack Detection Using LSTMs in Smart Grids*"
+    - "Ranked 1st in cohort"
+
+- degree: B.Sc., Computer Engineering (Software)
+  school: University of Zanjan
+  place: Zanjan, Iran
+  dates: 2013 to 2017
+  mark: UZ
+  notes:
+    - "Thesis: *Secure DBaaS Model Using NoSQL Databases*"
+    - "Ranked 2nd in cohort"

@@ -1,0 +1,42 @@
+---
+layout: default
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 220 | at_least: 1 -%}
+<article class="post">
+  <header class="post-head">
+    <p class="post-back"><a href="{{ '/blog/' | relative_url }}">All posts</a></p>
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span>{{ minutes }} min read</span>
+      {%- if page.updated %}
+      <span>Updated {{ page.updated | date: "%B %-d, %Y" }}</span>
+      {%- endif %}
+    </p>
+    {%- if page.tags and page.tags.size > 0 %}
+    <ul class="tags" aria-label="Tags">
+      {%- for tag in page.tags %}
+      <li><a href="{{ '/blog/' | relative_url }}?tag={{ tag | url_encode }}">{{ tag }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  <div class="prose post-body">
+{{ content }}
+  </div>
+
+  {%- if page.previous or page.next %}
+  <nav class="post-nav" aria-label="More posts">
+    {%- if page.previous %}
+    <a class="post-prev" href="{{ page.previous.url | relative_url }}"><span>Older post</span>{{ page.previous.title }}</a>
+    {%- endif %}
+    {%- if page.next %}
+    <a class="post-next" href="{{ page.next.url | relative_url }}"><span>Newer post</span>{{ page.next.title }}</a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+
+{% include comments.html %}
+</article>

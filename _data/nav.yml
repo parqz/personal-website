@@ -1,0 +1,9 @@
+# Sidebar navigation, in order. "Blog" is added automatically (see blog_in_nav in _config.yml).
+- title: About
+  url: /
+- title: Research
+  url: /research/
+- title: Publications
+  url: /publications/
+- title: Experience
+  url: /experience/

@@ -1,0 +1,78 @@
+# Publications, newest first. The order here sets the citation numbers [1], [2], ... used across the site.
+#
+# id:       short unique key; used in links (/publications/#id) and for citing: {% include cite.html keys="id" %}
+# status:   published | under-review | in-preparation
+# area:     efficiency | trustworthy | privacy   (must match an id in _data/research.yml)
+# links:    all optional: pdf, anthology, code, doi, arxiv, slides, poster
+# selected: true -> also shown on the home page
+# image:    optional teaser figure, e.g. /assets/img/papers/authority-bias.png
+# award:    optional, e.g. "Best Paper Award"
+
+- id: authority-bias
+  title: "Authority Bias in Conversational Search Engines for Academic Paper Recommendation"
+  authors: [U. Jinadu, P. Ghazvinian, A. Budathoki, B. M. Ampel, R. Sunderraman, Y. Ding]
+  venue: "EMNLP 2026 (Main Conference)"
+  year: 2026
+  status: published
+  area: trustworthy
+  selected: true
+  links:
+    pdf: https://aclanthology.org/2026.emnlp-main.1069.pdf
+    anthology: https://aclanthology.org/2026.emnlp-main.1069/
+
+- id: nra-embed
+  title: "When Disagreement Meets Noise: Noise Robust Annotator Embeddings for Subjective NLP"
+  authors: [K. Jacob, P. Ghazvinian, U. Jinadu, N. T. Yang, Y. Ding]
+  venue: "Findings of EMNLP 2026"
+  year: 2026
+  status: published
+  area: trustworthy
+  selected: true
+  links:
+    pdf: https://aclanthology.org/2026.findings-emnlp.2078.pdf
+    anthology: https://aclanthology.org/2026.findings-emnlp.2078/
+    code: https://github.com/KevinJ-30/Subjective_Annotators
+
+- id: lora-rank
+  title: "Does Learned Rank Allocation Help Shared and Standard Low-Rank Adapters? A Controlled Study at Equal Final Rank Budget"
+  authors: [P. Ghazvinian, M. Dhakal, U. Jinadu, Y. Ding, R. Sunderraman]
+  venue: "ACL Rolling Review"
+  year: 2026
+  status: under-review
+  area: efficiency
+  selected: true
+  links: {}   # no PDF while under anonymous review
+
+- id: mofhei
+  title: "MOFHEI: Model Optimization Framework for Fast and Efficient Homomorphically Encrypted Neural Network Inference"
+  authors: [P. Ghazvinian, R. Podschwadt, M. GhasemiGol, D. Takabi]
+  venue: "IEEE TPS 2024"
+  year: 2024
+  status: published
+  area: privacy
+  selected: true
+  links:
+    code: https://github.com/inspire-lab/MOFHEI
+    # doi: TODO(Parsa)
+
+- id: memory-efficient-he
+  title: "Memory-Efficient Privacy-Preserving Machine Learning Based on Homomorphic Encryption"
+  authors: [R. Podschwadt, P. Ghazvinian, M. GhasemiGol, D. Takabi]
+  venue: "ACNS 2024"
+  year: 2024
+  status: published
+  area: privacy
+  selected: false
+  links: {}
+    # doi: TODO(Parsa)
+
+- id: packing-aware-pruning
+  title: "Packing-Aware Pruning for Efficient Private Inference Based on Fully Homomorphic Encryption"
+  authors: [P. Ghazvinian, R. Podschwadt, M. GhasemiGol, D. Takabi]
+  venue: "IEEE S&P 2023 (Extended Abstract)"
+  year: 2023
+  status: published
+  area: privacy
+  selected: false
+  links: {}
+    # pdf: TODO(Parsa)

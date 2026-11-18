@@ -1,0 +1,31 @@
+---
+layout: page
+---
+{{ content }}
+<div class="filter" role="group" aria-label="Show publications by research area">
+  <button type="button" data-filter="all" aria-pressed="true">All</button>
+  {%- for area in site.data.research %}
+  <button type="button" data-filter="{{ area.id }}" aria-pressed="false"><span class="cell area-{{ area.id }}" aria-hidden="true"></span>{{ area.title }}</button>
+  {%- endfor %}
+</div>
+
+{% assign prev_year = "" %}
+{%- for pub in site.data.publications %}
+  {%- if pub.year != prev_year %}
+    {%- unless forloop.first %}
+  </ol>
+</section>
+    {%- endunless %}
+<section class="year-group">
+  <h2 class="year">{{ pub.year }}</h2>
+  <ol class="pubs">
+    {%- assign prev_year = pub.year %}
+  {%- endif %}
+{% include pub.html pub=pub n=forloop.index %}
+  {%- if forloop.last %}
+  </ol>
+</section>
+  {%- endif %}
+{%- endfor %}
+
+<p class="after-list">Citation counts and the full record are on <a href="{{ site.data.profile.links.scholar }}" target="_blank" rel="noopener">Google Scholar</a>.</p>

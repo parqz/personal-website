@@ -1,0 +1,78 @@
+---
+layout: page
+---
+{{ content }}
+<p class="cv-line"><a class="btn btn-cv" href="{{ site.data.profile.links.cv | relative_url }}" target="_blank" rel="noopener"><svg class="ico"><use href="#i-download"/></svg>Download CV</a> <span>The same record as a PDF.</span></p>
+
+<section class="block" id="research-experience">
+  <h2>Research experience</h2>
+  <ul class="timeline">
+    {%- for job in site.data.experience %}
+    <li>
+      <div class="tile" aria-hidden="true">{% if job.logo %}<img src="{{ job.logo | relative_url }}" alt="">{% else %}{{ job.mark }}{% endif %}</div>
+      <div>
+        <div class="tl-head"><h3>{{ job.role }}</h3><span class="when">{{ job.dates }}</span></div>
+        <p class="org">{{ job.org }}, {{ job.place }}</p>
+        {%- if job.points %}
+        <ul class="points">
+          {%- for point in job.points %}
+          <li>{{ point | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="block" id="education">
+  <h2>Education</h2>
+  <ul class="timeline">
+    {%- for ed in site.data.education %}
+    <li>
+      <div class="tile" aria-hidden="true">{% if ed.logo %}<img src="{{ ed.logo | relative_url }}" alt="">{% else %}{{ ed.mark }}{% endif %}</div>
+      <div>
+        <div class="tl-head"><h3>{{ ed.degree }}</h3><span class="when">{{ ed.dates }}</span></div>
+        <p class="org">{{ ed.school }}, {{ ed.place }}</p>
+        {%- if ed.notes %}
+        <ul class="notes">
+          {%- for note in ed.notes %}
+          <li>{{ note | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="block" id="service">
+  <h2>Academic service</h2>
+  <ul class="plain-list">
+    {%- for s in site.data.service %}
+    <li><span class="when">{{ s.year }}</span><span><b>{{ s.role }}</b>, {{ s.venue }}.{% if s.note %} {{ s.note }}{% endif %}</span></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="block" id="honors">
+  <h2>Honors and awards</h2>
+  <ul class="plain-list">
+    {%- for h in site.data.honors %}
+    <li><span class="when">{{ h.year }}</span><span><b>{{ h.title }}</b>, {{ h.from }}</span></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+{%- if site.data.skills and site.data.skills.size > 0 %}
+<section class="block" id="tools">
+  <h2>Tools</h2>
+  <dl class="rows rows-tools">
+    {%- for s in site.data.skills %}
+    <div><dt>{{ s.group }}</dt><dd>{{ s.items }}</dd></div>
+    {%- endfor %}
+  </dl>
+</section>
+{%- endif %}

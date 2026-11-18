@@ -1,0 +1,38 @@
+# Research and teaching experience, newest first. Shown on the Experience page.
+# mark: two or three letters shown in the tile; logo (optional): e.g. /assets/img/logos/gsu.png
+
+- role: Graduate Research Assistant
+  org: INSPIRE Center and CHAI Center, Georgia State University
+  place: Atlanta, GA
+  dates: Jan 2022 to present
+  mark: GSU
+  points:
+    - >-
+      Led a controlled study of adaptive rank allocation in LoRA (under review, ACL Rolling Review):
+      learned allocation was never detectably better than a fixed rank at the same parameter budget.
+    - >-
+      Leading an analysis of how visual-token pruning in vision-language models is evaluated (paper
+      in preparation): the answer-searched “upper bounds” used to judge pruning methods overstate the
+      remaining headroom by about 30 points.
+    - >-
+      Built MOFHEI, an open-source framework that prepares pretrained models for encrypted inference,
+      cutting latency by 9.6× and memory by 4× at negligible accuracy loss (IEEE TPS 2024).
+    - >-
+      Co-developed a caching and dynamic weight-loading scheme that cut the peak memory of encrypted
+      inference by up to 50×, so it can run on low-cost hardware (ACNS 2024).
+    - >-
+      Implemented the noise-robust contrastive objective behind NRA-Embed, which learns from
+      disagreeing annotators without erasing minority perspectives (Findings of EMNLP 2026).
+
+- role: Graduate Research Assistant and Teaching Assistant
+  org: Data Mining Lab, University of Zanjan
+  place: Zanjan, Iran
+  dates: Sep 2018 to Dec 2020
+  mark: UZ
+  points:
+    - >-
+      Built an LSTM-based model that detects false-data-injection attacks in smart-grid telemetry,
+      reaching 96.7% detection accuracy on the IEEE 118-bus test system.
+    - >-
+      Teaching assistant for Machine Learning (45 students per semester): ran lab sessions and wrote
+      assignments.

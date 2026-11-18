@@ -1,0 +1,92 @@
+# Site settings for parsaghazvinian.com (Jekyll, built by GitHub Pages).
+# Content lives in _data/ and _pages/; blog posts in _posts/. See README.md.
+
+title: Parsa Ghazvinian
+tagline: Ph.D. Candidate in Computer Science, Georgia State University
+description: >-
+  Parsa Ghazvinian is a Ph.D. candidate in Computer Science at Georgia State University
+  working on efficient and trustworthy AI: parameter-efficient fine-tuning, how visual-token
+  pruning in vision-language models is evaluated, the reliability of LLM systems, and
+  encrypted inference.
+url: https://parsaghazvinian.com
+baseurl: ""
+lang: en
+timezone: America/New_York
+
+author:
+  name: Parsa Ghazvinian
+  url: https://parsaghazvinian.com
+
+# Search-engine and link-preview metadata (jekyll-seo-tag)
+social:
+  name: Parsa Ghazvinian
+  links:
+    - https://scholar.google.com/citations?user=qn7j9xkAAAAJ
+    - https://github.com/parqz
+    - https://www.linkedin.com/in/pghazvinian/
+    - https://www.researchgate.net/profile/Parsa-Ghazvinian
+# Google Search Console: paste the verification code here, then push.
+# webmaster_verifications:
+#   google: ""
+
+# Blog
+permalink: /blog/:title/
+excerpt_separator: "<!--more-->"
+feed:
+  path: /feed.xml
+# Show "Blog" in the navigation: auto = only once there is at least one post; true; false
+blog_in_nav: auto
+# Comments under posts (off until set up; see README.md "Comments")
+comments:
+  provider: none        # none | giscus
+  giscus:
+    repo: parqz/personal-website
+    repo_id: ""
+    category: Blog comments
+    category_id: ""
+
+# No ready-made theme: the layouts and styles in this repository are the theme.
+theme: null
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  math_engine: mathjax   # leaves math for KaTeX to render in the browser
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+include:
+  - _pages
+exclude:
+  - README.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/og.png
+  - scope:
+      path: "_pages"
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Parsa Ghazvinian
+  - scope:
+      path: ""
+      type: drafts
+    values:
+      layout: post
+      author: Parsa Ghazvinian

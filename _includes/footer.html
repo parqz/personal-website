@@ -1,0 +1,6 @@
+<footer class="foot">
+  <p>&copy; {{ site.time | date: "%Y" }} {{ site.data.profile.name }}. Last updated {{ site.time | date: "%B %Y" }}.</p>
+  {%- if site.posts.size > 0 %}
+  <p><a href="{{ '/feed.xml' | relative_url }}"><svg class="ico"><use href="#i-rss"/></svg>RSS feed</a></p>
+  {%- endif %}
+</footer>

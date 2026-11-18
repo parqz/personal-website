@@ -1,0 +1,41 @@
+{%- comment %} Does the profile photo exist yet? If not, the sidebar shows initials. {% endcomment -%}
+{%- assign has_photo = false -%}
+{%- for f in site.static_files -%}
+  {%- if f.path == site.data.profile.photo -%}{%- assign has_photo = true -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+{% include head.html %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{% include icons.html %}
+<div class="shell">
+{% include sidebar.html %}
+  <main id="main">
+{{ content }}
+{% include footer.html %}
+  </main>
+</div>
+<dialog class="viewer" id="viewer" aria-label="Image viewer">
+  <button type="button" class="viewer-close" id="viewerClose">Close</button>
+</dialog>
+{%- assign v = site.time | date: "%Y%m%d%H%M" %}
+<script src="{{ '/assets/js/main.js' | relative_url }}?v={{ v }}" defer></script>
+{%- if page.math %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.renderMathInElement) renderMathInElement(document.getElementById('main'), {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '\\[', right: '\\]', display: true },
+      { left: '\\(', right: '\\)', display: false }
+    ],
+    throwOnError: false
+  });
+});
+</script>
+{%- endif %}
+</body>
+</html>
