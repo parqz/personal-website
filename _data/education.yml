@@ -1,10 +1,12 @@
 # Degrees, newest first. Shown on the home page.
+# logo: image shown in the tile, e.g. /assets/img/logos/gsu.png; mark: letters shown instead when there is no logo.
 
 - degree: Ph.D., Computer Science
   school: Georgia State University
   place: Atlanta, GA
   dates: Spring 2022 to present
   mark: GSU
+  logo: /assets/img/logos/gsu.png
   notes:
     - "Advisors: Dr. Rajshekhar Sunderraman and Dr. Yi Ding"
     - "Expected graduation: December 2027"
@@ -14,6 +16,7 @@
   place: Atlanta, GA
   dates: Spring 2022 to Fall 2024
   mark: GSU
+  logo: /assets/img/logos/gsu.png
   notes:
     - "Awarded en route to the Ph.D."
 
@@ -22,6 +25,7 @@
   place: Zanjan, Iran
   dates: 2017 to 2020
   mark: UZ
+  logo: /assets/img/logos/uz.png
   notes:
     - "Thesis: *FDI Attack Detection Using LSTMs in Smart Grids*"
     - "Ranked 1st in cohort"
@@ -31,6 +35,7 @@
   place: Zanjan, Iran
   dates: 2013 to 2017
   mark: UZ
+  logo: /assets/img/logos/uz.png
   notes:
     - "Thesis: *Secure DBaaS Model Using NoSQL Databases*"
     - "Ranked 2nd in cohort"

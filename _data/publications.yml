@@ -1,15 +1,33 @@
 # Publications, newest first.
 #
 # id:       short unique key; used in links (/publications/#id)
-# venue_short: the short label shown on the image, e.g. "EMNLP 2026"
-# status:   published | under-review | in-preparation
+# venue_short: the short label shown on the tile when the paper has no image, e.g. "EMNLP 2026"
+# status:   published | accepted (shows "To appear") | under-review | in-preparation
 # area:     efficiency | trustworthy | privacy   (must match an id in _data/research.yml)
-# links:    all optional: pdf, anthology, code, doi, arxiv, slides, poster
+# links:    all optional. One button leads to the paper itself:
+#             paper: the published version (shown as "Paper"), or
+#             arxiv: the arXiv page (shown as "arXiv"; used only when there is no "paper" link)
+#           and others follow it: code, dataset, slides, poster
 # selected: true -> also shown on the home page
-# image:    figure or poster shown beside the paper, e.g. /assets/img/papers/nra-embed.png
-#           (without one, a plain tile with the venue name is shown)
+# image:    banner, figure or poster shown beside the paper, e.g. /assets/img/papers/nra-embed.png
+#           (without one, a coloured tile with the venue name is shown)
 # image_alt: one sentence describing the image, for screen readers
 # award:    optional, e.g. "Best Paper Award"
+#
+# Papers under anonymous review are not listed here until they are accepted.
+
+- id: answer-or-defer
+  title: "Answer or Defer? Testing VLMs' Stated Confidence on Brain MRI"
+  authors: [A. Sabbaghziarani, P. Ghazvinian, S. Salem, S. Plis]
+  venue: "WACV 2027 FABRIC Workshop"
+  venue_short: "WACV 2027 Workshop"
+  year: 2027
+  status: accepted
+  area: trustworthy
+  selected: true
+  links:
+    arxiv: https://arxiv.org/abs/2611.11833
+    code: https://github.com/amir-sbg/VLM-Answer-or-Defer
 
 - id: authority-bias
   title: "Authority Bias in Conversational Search Engines for Academic Paper Recommendation"
@@ -21,8 +39,11 @@
   area: trustworthy
   selected: true
   links:
-    pdf: https://aclanthology.org/2026.emnlp-main.1069.pdf
-    anthology: https://aclanthology.org/2026.emnlp-main.1069/
+    paper: https://aclanthology.org/2026.emnlp-main.1069/
+    code: https://github.com/jinaduuthman/Authority-Bias-In-Conversational-Search-Engine
+    dataset: https://huggingface.co/datasets/uthmanjinadu/authority-bias-paper-recommendation
+  image: /assets/img/papers/authority-bias.png
+  image_alt: "Research showcase slide: 39% of an AI's paper recommendations change when only the prestige signals (author fame, venue, citation counts) are altered and the paper's content stays identical"
 
 - id: nra-embed
   title: "When Disagreement Meets Noise: Noise Robust Annotator Embeddings for Subjective NLP"
@@ -34,26 +55,14 @@
   area: trustworthy
   selected: true
   links:
-    pdf: https://aclanthology.org/2026.findings-emnlp.2078.pdf
-    anthology: https://aclanthology.org/2026.findings-emnlp.2078/
+    paper: https://aclanthology.org/2026.findings-emnlp.2078/
     code: https://github.com/KevinJ-30/Subjective_Annotators
   image: /assets/img/papers/nra-embed.png
   image_alt: "Line chart from the paper: mean annotator F1 of four models as label noise rises from 0 to 40 percent"
 
-- id: lora-rank
-  title: "Does Learned Rank Allocation Help Shared and Standard Low-Rank Adapters? A Controlled Study at Equal Final Rank Budget"
-  authors: [P. Ghazvinian, M. Dhakal, U. Jinadu, Y. Ding, R. Sunderraman]
-  venue: "ACL Rolling Review"
-  venue_short: "Under review"
-  year: 2026
-  status: under-review
-  area: efficiency
-  selected: true
-  links: {}   # no PDF while under anonymous review
-
 - id: mofhei
-  title: "MOFHEI: Model Optimization Framework for Fast and Efficient Homomorphically Encrypted Neural Network Inference"
-  authors: [P. Ghazvinian, R. Podschwadt, M. GhasemiGol, D. Takabi]
+  title: "MOFHEI: Model Optimizing Framework for Fast and Efficient Homomorphically Encrypted Neural Network Inference"
+  authors: [P. Ghazvinian, R. Podschwadt, P. Panzade, M. H. Rafiei, D. Takabi]
   venue: "IEEE TPS 2024"
   venue_short: "IEEE TPS 2024"
   year: 2024
@@ -61,11 +70,13 @@
   area: privacy
   selected: true
   links:
+    paper: https://ieeexplore.ieee.org/abstract/document/10835462
     code: https://github.com/inspire-lab/MOFHEI
-    # doi: TODO(Parsa)
+  image: /assets/img/papers/mofhei.png
+  image_alt: "Figure from the paper: a small fully connected network and its weight matrices, first in encryption-friendly form, then pruned in column-wise blocks, then with the pruned blocks removed"
 
 - id: memory-efficient-he
-  title: "Memory-Efficient Privacy-Preserving Machine Learning Based on Homomorphic Encryption"
+  title: "Memory Efficient Privacy-Preserving Machine Learning Based on Homomorphic Encryption"
   authors: [R. Podschwadt, P. Ghazvinian, M. GhasemiGol, D. Takabi]
   venue: "ACNS 2024"
   venue_short: "ACNS 2024"
@@ -73,17 +84,19 @@
   status: published
   area: privacy
   selected: false
-  links: {}
-    # doi: TODO(Parsa)
+  links:
+    paper: https://link.springer.com/chapter/10.1007/978-3-031-54773-7_13
+  image: /assets/img/papers/memory-efficient-he.png
+  image_alt: "Figure from the paper: a schedule of operations, shown as a colour-coded table, broken down into sub-schedules for each output and each filter position"
 
 - id: packing-aware-pruning
-  title: "Packing-Aware Pruning for Efficient Private Inference Based on Fully Homomorphic Encryption"
-  authors: [P. Ghazvinian, R. Podschwadt, M. GhasemiGol, D. Takabi]
+  title: "Packing-Aware Pruning for Efficient Private Inference Based on Homomorphic Encryption"
+  authors: [P. Ghazvinian, R. Podschwadt, P. Panzade, M. H. Rafiei, D. Takabi]
   venue: "IEEE S&P 2023 (Extended Abstract)"
   venue_short: "IEEE S&P 2023"
   year: 2023
   status: published
   area: privacy
   selected: false
-  links: {}
-    # pdf: TODO(Parsa)
+  links:
+    paper: https://sp2023.ieee-security.org/downloads/SP23-posters/sp23-posters-paper35-final_version_2_page_abstract.pdf

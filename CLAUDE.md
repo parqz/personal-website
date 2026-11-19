@@ -14,7 +14,8 @@ privately. Ask him for it, or read it in his project notes, before changing cont
 - No analytics, trackers or third-party scripts unless Parsa asks for one. Fonts and libraries are
   served from this repository.
 - No phone numbers or street addresses anywhere in the site.
-- Papers under anonymous review are listed by title and status only, with no PDF.
+- Papers under anonymous review are not listed among the publications, by title or otherwise, until
+  they are accepted.
 - The site must build with the Jekyll version and plugins GitHub Pages provides (the `github-pages`
   gem): no custom plugins and no Node build step.
 - `assets/cv.pdf` must keep its name and path.

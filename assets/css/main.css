@@ -211,14 +211,15 @@ main > section:first-child { margin-top: 0; }
 .news .date { justify-self: start; align-self: start; margin-top: 2px; padding: 0 11px; border-radius: 999px; font-size: .86rem; font-weight: 700; white-space: nowrap; color: var(--c-deep); background: var(--c-soft); }
 
 /* ---------- Publications ---------- */
-.pub { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.pub { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--line); align-items: start; }
 .pub:last-of-type { border-bottom: 0; }
 .pub[hidden] { display: none; }
 .pub:target { background: var(--tint); box-shadow: -14px 0 0 var(--tint), 14px 0 0 var(--tint); }
 .pub-thumb { position: relative; margin: 2px 10px 10px 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; line-height: 0; box-shadow: 7px 7px 0 var(--c); transition: transform .16s ease, box-shadow .16s ease; }
 .pub:hover .pub-thumb { transform: translate(-3px, -3px); box-shadow: 10px 10px 0 var(--c); }
-.pub-thumb a { display: block; cursor: zoom-in; }
-.pub-thumb img { display: block; width: 100%; height: auto; }
+/* Every image sits in the same 16:10 white frame, scaled to fit, so wide banners and tall figures line up. */
+.pub-thumb a { position: relative; display: block; aspect-ratio: 16 / 10; cursor: zoom-in; }
+.pub-thumb img { position: absolute; top: 8px; left: 8px; width: calc(100% - 16px); height: calc(100% - 16px); object-fit: contain; }
 .pub-thumb-empty { aspect-ratio: 16 / 10; background: var(--c-soft); border-color: var(--c-soft); display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; line-height: 1.25; }
 .pub-thumb-empty::before { content: ""; position: absolute; inset: 0; opacity: .34; background-image: radial-gradient(circle, var(--c) 1.4px, transparent 1.7px); background-size: 15px 15px; background-position: 4px 4px;
   -webkit-mask-image: radial-gradient(ellipse at center, transparent 38%, #000 100%); mask-image: radial-gradient(ellipse at center, transparent 38%, #000 100%); }
@@ -237,7 +238,7 @@ main > section:first-child { margin-top: 0; }
 .pub-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .pub-links a { font-size: .86rem; font-weight: 650; border: 1.5px solid var(--c); padding: 1px 13px; border-radius: 999px; color: var(--ink); transition: background-color .15s ease, color .15s ease; }
 .pub-links a:hover { background: var(--c); color: var(--c-on); text-decoration: none; }
-.pub-compact { grid-template-columns: minmax(0, 1fr); padding: 14px 0; }
+.pub.pub-compact { grid-template-columns: minmax(0, 1fr); padding: 14px 0; }
 .year { display: flex; align-items: center; gap: 16px; font-size: 1.25rem; color: var(--muted); margin: 34px 0 0; }
 .year::after { content: ""; flex: 1; height: 2px; border-radius: 2px; background: var(--line); }
 .year-group[hidden] { display: none; }
@@ -254,15 +255,15 @@ main > section:first-child { margin-top: 0; }
 
 /* ---------- Education, experience, honors, service ---------- */
 .entries { background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
-.entry { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 20px; padding: 19px 22px; align-items: start; }
+.entry { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 20px; padding: 19px 22px; align-items: start; }
 .entry + .entry { border-top: 1px solid var(--line); }
 .entry-plain { grid-template-columns: 40px minmax(0, 1fr); gap: 16px; padding: 15px 22px; align-items: center; }
 .entry-plain .logo { width: 40px; height: 40px; border-radius: 50%; }
 .entry-plain .logo .ico { width: 20px; height: 20px; }
-.logo { width: 62px; height: 62px; border-radius: 12px; background: var(--c-soft); color: var(--c-deep); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: .98rem; overflow: hidden; transition: transform .16s ease; }
+.logo { width: 100px; height: 70px; border-radius: 12px; background: var(--c-soft); color: var(--c-deep); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: .98rem; overflow: hidden; transition: transform .16s ease; }
 .logo-img { background: #fff; border: 1px solid var(--line); }
-.logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
-.entry:hover .logo { transform: rotate(-4deg) scale(1.05); }
+.logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px 8px; }
+.entry:hover .logo { transform: rotate(-3deg) scale(1.05); }
 .entry p { margin: 0; }
 .entry-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 14px; }
 .entry-title { font-size: 1.06rem; }
@@ -372,6 +373,7 @@ main > section:first-child { margin-top: 0; }
   .nav a { font-size: .95rem; }
   .page { gap: 44px; }
   .about { grid-template-columns: minmax(0, 1fr) 186px; gap: 30px; }
+  .pub { grid-template-columns: 270px minmax(0, 1fr); }
 }
 /* Short windows: a smaller portrait keeps the whole profile column in view; very short ones let it scroll away. */
 @media (min-width: 901px) and (max-height: 800px) {
@@ -387,6 +389,7 @@ main > section:first-child { margin-top: 0; }
   .author-name { font-size: 1.48rem; }
   .author-bio { font-size: .93rem; }
   .about { grid-template-columns: minmax(0, 1fr) 168px; gap: 28px; }
+  .pub { grid-template-columns: 240px minmax(0, 1fr); gap: 22px; }
 }
 @media (max-width: 900px) {
   html { scroll-padding-top: 64px; }
@@ -436,7 +439,8 @@ main > section:first-child { margin-top: 0; }
   .entry-plain .entry-head { min-height: 0; }
   .entry-plain .entry-sub { clear: none; padding-top: 0; }
   .entry-plain .logo .ico { width: 17px; height: 17px; }
-  .logo { width: 46px; height: 46px; border-radius: 10px; font-size: .8rem; }
+  .logo { width: 72px; height: 52px; border-radius: 10px; font-size: .8rem; }
+  .logo img { padding: 4px 6px; }
   .project { padding: 15px 15px 11px; }
   .rows > div { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 5px 0; }
   .post-nav { grid-template-columns: 1fr; }

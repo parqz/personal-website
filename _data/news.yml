@@ -1,6 +1,9 @@
 # News, newest first. To add an item, copy two lines to the top and edit them.
 # date: "Nov 2026" style, or just "2026" when the month is unknown. text: Markdown allowed.
 
+- date: "Nov 2026"
+  text: "New paper accepted at the WACV 2027 FABRIC Workshop: [Answer or Defer? Testing VLMs' Stated Confidence on Brain MRI](https://arxiv.org/abs/2611.11833) asks whether a vision-language model's stated confidence can tell it when to answer and when to defer. [Code](https://github.com/amir-sbg/VLM-Answer-or-Defer) is available."
+
 - date: "2026"
   text: "Two papers accepted at EMNLP 2026 (Main and Findings): [authority bias in LLM-based search engines](https://aclanthology.org/2026.emnlp-main.1069/) and [noise-robust learning from annotator disagreement](https://aclanthology.org/2026.findings-emnlp.2078/)."
 

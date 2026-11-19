@@ -1,11 +1,14 @@
 # Research and teaching experience, newest first. Shown on the home page.
-# mark: two or three letters shown in the tile; logo (optional): e.g. /assets/img/logos/gsu.png
+# logo:   image shown in the tile, e.g. /assets/img/logos/gsu.png
+# mark:   two to four letters shown instead when there is no logo
+# points: optional list of bullet points (Markdown allowed)
 
 - role: Graduate Research Assistant
-  org: INSPIRE Center and CHAI Center, Georgia State University
+  org: CHAI Center, Georgia State University
   place: Atlanta, GA
-  dates: Jan 2022 to present
-  mark: GSU
+  dates: Aug 2025 to present
+  mark: CHAI
+  logo: /assets/img/logos/chai.png
   points:
     - >-
       Led a controlled study of adaptive rank allocation in LoRA (under review, ACL Rolling Review):
@@ -15,20 +18,36 @@
       in preparation): the answer-searched “upper bounds” used to judge pruning methods overstate the
       remaining headroom by about 30 points.
     - >-
+      Implemented the noise-robust contrastive objective behind NRA-Embed, which learns from
+      disagreeing annotators without erasing minority perspectives (Findings of EMNLP 2026).
+
+- role: Presidential Fellow
+  org: Transcultural Conflict and Violence Initiative (TCV), Georgia State University
+  place: Atlanta, GA
+  dates: Jan 2025 to Jul 2025
+  mark: TCV
+  logo: /assets/img/logos/gsu.png
+
+- role: Graduate Research Assistant
+  org: INSPIRE Center, Georgia State University
+  place: Atlanta, GA
+  dates: Jan 2022 to Dec 2024
+  mark: GSU
+  logo: /assets/img/logos/gsu.png
+  points:
+    - >-
       Built MOFHEI, an open-source framework that prepares pretrained models for encrypted inference,
       cutting latency by 9.6× and memory by 4× at negligible accuracy loss (IEEE TPS 2024).
     - >-
       Co-developed a caching and dynamic weight-loading scheme that cut the peak memory of encrypted
       inference by up to 50×, so it can run on low-cost hardware (ACNS 2024).
-    - >-
-      Implemented the noise-robust contrastive objective behind NRA-Embed, which learns from
-      disagreeing annotators without erasing minority perspectives (Findings of EMNLP 2026).
 
 - role: Graduate Research Assistant and Teaching Assistant
   org: Data Mining Lab, University of Zanjan
   place: Zanjan, Iran
   dates: Sep 2018 to Dec 2020
   mark: UZ
+  logo: /assets/img/logos/uz.png
   points:
     - >-
       Built an LSTM-based model that detects false-data-injection attacks in smart-grid telemetry,
