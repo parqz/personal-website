@@ -1,27 +1,29 @@
 {%- assign p = site.data.profile -%}
 <aside class="sidebar">
   {%- if has_photo %}
-  <img class="avatar" src="{{ p.photo | relative_url }}" alt="Portrait of {{ p.name }}" width="340" height="340">
+  <img class="avatar" src="{{ p.photo | relative_url }}" alt="Portrait of {{ p.name }}" width="204" height="255">
   {%- else %}
   <div class="avatar avatar-empty" aria-hidden="true">{{ p.initials }}</div>
   {%- endif %}
-  {% if page.url == '/' %}<h1 class="author-name">{{ p.name }}</h1>{% else %}<p class="author-name">{{ p.name }}</p>{% endif %}
-  <p class="author-bio">{{ p.title }}<br>{{ p.affiliation }}</p>
+  <div class="author-id">
+    {% if page.url == '/' %}<h1 class="author-name">{{ p.name }}</h1>{% else %}<p class="author-name">{{ p.name }}</p>{% endif %}
+    <p class="author-bio">{{ p.title }}<br>{{ p.affiliation }}</p>
+  </div>
   <ul class="author-links">
-    <li><svg class="ico"><use href="#i-pin"/></svg>{{ p.location }}</li>
-    <li class="email"><a href="mailto:{{ p.email }}"><svg class="ico"><use href="#i-mail"/></svg>{{ p.email }}</a></li>
+    <li><svg class="ico ico-pin"><use href="#i-pin"/></svg>{{ p.location }}</li>
+    <li class="email"><a href="mailto:{{ p.email }}"><svg class="ico ico-mail"><use href="#i-mail"/></svg>{{ p.email }}</a></li>
     {%- if p.links.scholar %}
-    <li><a href="{{ p.links.scholar }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-scholar"/></svg>Google Scholar</a></li>
+    <li><a href="{{ p.links.scholar }}" target="_blank" rel="noopener me"><svg class="ico ico-scholar"><use href="#i-scholar"/></svg>Google Scholar</a></li>
     {%- endif %}
     {%- if p.links.github %}
-    <li><a href="{{ p.links.github }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-github"/></svg>GitHub</a></li>
+    <li><a href="{{ p.links.github }}" target="_blank" rel="noopener me"><svg class="ico ico-github"><use href="#i-github"/></svg>GitHub</a></li>
     {%- endif %}
     {%- if p.links.linkedin %}
-    <li><a href="{{ p.links.linkedin }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-linkedin"/></svg>LinkedIn</a></li>
+    <li><a href="{{ p.links.linkedin }}" target="_blank" rel="noopener me"><svg class="ico ico-linkedin"><use href="#i-linkedin"/></svg>LinkedIn</a></li>
     {%- endif %}
     {%- if p.links.researchgate %}
-    <li><a href="{{ p.links.researchgate }}" target="_blank" rel="noopener me"><svg class="ico"><use href="#i-researchgate"/></svg>ResearchGate</a></li>
+    <li><a href="{{ p.links.researchgate }}" target="_blank" rel="noopener me"><svg class="ico ico-researchgate"><use href="#i-researchgate"/></svg>ResearchGate</a></li>
     {%- endif %}
-    <li><a href="{{ p.links.cv | relative_url }}" target="_blank" rel="noopener"><svg class="ico"><use href="#i-file"/></svg>CV (PDF)</a></li>
+    <li><a href="{{ p.links.cv | relative_url }}" target="_blank" rel="noopener"><svg class="ico ico-cv"><use href="#i-file"/></svg>CV (PDF)</a></li>
   </ul>
 </aside>

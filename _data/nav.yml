@@ -4,13 +4,14 @@
 # "Blog" and "CV" are added automatically (see blog_in_nav in _config.yml).
 - title: About
   url: /#about
+- title: Research
+  url: /#research
+  also: /research/
 - title: News
   url: /#news
 - title: Publications
   url: /#publications
   also: /publications/
-- title: Research
-  url: /research/
 - title: Education
   url: /#education
 - title: Experience

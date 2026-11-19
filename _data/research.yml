@@ -1,15 +1,22 @@
-# The three research areas, shown on the Research page.
+# The research areas. Shown as the numbered rows on the home page and, in full, on the Research page.
 #
 # id:       used in links (/research/#id) and as "area" in _data/publications.yml
-# summary:  one sentence under the area title
-# intro:    opening paragraph of the area
+# color:    the area's colour on every page: indigo | apricot | teal | rose
+# summary:  one sentence, shown in the area's row on the home page
+# topics:   short labels shown in the area's row on the home page
+# intro:    opening paragraph of the area on the Research page
 # projects: each has a title, a status line, and rows of label + text
 
 - id: efficiency
   title: "Efficiency & optimization"
+  color: apricot
   summary: >-
     Testing what actually makes fine-tuning and inference cheaper, from rank allocation in LoRA to
     how visual-token pruning in vision-language models is evaluated.
+  topics:
+    - Parameter-efficient fine-tuning
+    - Efficient inference
+    - Vision-language models
   intro: >-
     I study methods that make modern AI systems cheaper to adapt and run, including
     parameter-efficient fine-tuning, pruning and sparsity, and efficient inference for large
@@ -52,9 +59,13 @@
 
 - id: trustworthy
   title: "Robust & trustworthy AI"
+  color: teal
   summary: >-
     Authority bias in LLM-based search engines, and learning from noisy, disagreeing human
     annotators.
+  topics:
+    - Reliability of LLM systems
+    - Learning from annotator disagreement
   intro: >-
     My work in NLP and LLMs looks at how models behave under noisy, subjective or potentially
     biased conditions: learning from annotator disagreement, modeling subjective human judgments,
@@ -94,8 +105,11 @@
 
 - id: privacy
   title: "Privacy-preserving ML"
+  color: indigo
   summary: >-
     Making encrypted inference with homomorphic encryption faster and lighter on memory.
+  topics:
+    - Encrypted inference
   intro: >-
     Homomorphic encryption lets a model run on data it never sees in the clear, but encrypted
     inference is still far slower and more memory-hungry than ordinary inference. My work reduces

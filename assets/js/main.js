@@ -1,4 +1,4 @@
-/* Site-wide behaviour: menu, theme switch, publication and tag filters, image viewer. No dependencies. */
+/* Site-wide behaviour: menu, current tab, theme switch, publication and tag filters, image viewer. No dependencies. */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -15,6 +15,37 @@
     all('a', nav).forEach(function (a) {
       a.addEventListener('click', function () { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
     });
+  }
+
+  /* ---------- Tabs: on the home page, mark the tab of the section that is on screen ---------- */
+  var spy = [];
+  if (nav) {
+    all('a[href*="#"]', nav).forEach(function (a) {
+      var id = a.getAttribute('href').split('#')[1];
+      var sec = id ? document.getElementById(id) : null;
+      if (sec && sec.tagName === 'SECTION' && a.pathname === location.pathname) spy.push({ link: a, sec: sec });
+    });
+    spy.sort(function (a, b) { return a.sec.offsetTop - b.sec.offsetTop; });
+  }
+  if (spy.length) {
+    var bar = document.querySelector('.masthead');
+    var waiting = false;
+    var markTab = function () {
+      waiting = false;
+      var line = (bar ? bar.offsetHeight : 0) + 40;
+      var current = spy[0];
+      spy.forEach(function (s) { if (s.sec.getBoundingClientRect().top <= line) current = s; });
+      if (window.innerHeight + window.pageYOffset >= root.scrollHeight - 4) current = spy[spy.length - 1];
+      spy.forEach(function (s) {
+        if (s === current) s.link.setAttribute('aria-current', 'location'); else s.link.removeAttribute('aria-current');
+      });
+    };
+    window.addEventListener('scroll', function () {
+      if (!waiting) { waiting = true; window.requestAnimationFrame(markTab); }
+    }, { passive: true });
+    window.addEventListener('resize', markTab);
+    window.addEventListener('load', markTab);
+    markTab();
   }
 
   /* ---------- News: show the "(scroll)" hint only when the list is taller than its box ---------- */

@@ -1,6 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f8f7fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100e22" media="(prefers-color-scheme: dark)">
 {%- assign v = site.time | date: "%Y%m%d%H%M" -%}
 {% seo %}
 {% feed_meta %}
@@ -8,6 +10,7 @@
 <link rel="icon" href="{{ '/assets/img/favicon-32.png' | relative_url }}" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
 <link rel="preload" href="{{ '/assets/fonts/source-sans-3-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ v }}">
 <script>
 /* Mark that scripts run, and apply a saved theme before first paint. */

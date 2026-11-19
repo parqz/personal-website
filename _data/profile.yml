@@ -1,4 +1,5 @@
-# Who you are. Shown in the sidebar and in the About section of the home page.
+# Who you are. Shown in the left column and in the About section of the home page.
+# (Research-interest labels are in _data/research.yml, under each area's "topics".)
 name: Parsa Ghazvinian
 initials: PG
 title: Ph.D. Candidate in Computer Science
@@ -9,9 +10,15 @@ email: parsa.ghz10@gmail.com
 # One-line notice on the home page. Delete the text (leave notice: "") to remove it.
 notice: "I’m looking for Summer 2027 research internships."
 
-# Photo: put the file at assets/img/profile.jpg (square crop, about 640 px).
-# Until the file exists, the sidebar shows your initials in a circle.
+# Portrait in the left column: assets/img/profile.jpg, upright (4 wide by 5 tall, about 640 by 800 px).
+# Any shape works; the frame crops it around the centre. Without the file, your initials are shown.
 photo: /assets/img/profile.jpg
+
+# A second photo, shown beside the "About me" text. Delete these four lines to remove it.
+about_photo:
+  src: /assets/img/photos/acm-ai-summit-2026.jpg
+  alt: "Parsa on stage in front of the ACM AI Leadership Summit banner"
+  caption: "At the ACM AI Leadership Summit, 2026."
 
 links:
   cv: /assets/cv.pdf
@@ -19,15 +26,6 @@ links:
   github: https://github.com/parqz
   linkedin: https://www.linkedin.com/in/pghazvinian/
   researchgate: https://www.researchgate.net/profile/Parsa-Ghazvinian
-
-# Research interests, shown as small labels under the bio.
-interests:
-  - Parameter-efficient fine-tuning
-  - Efficient inference
-  - Vision-language models
-  - Reliability of LLM systems
-  - Learning from annotator disagreement
-  - Encrypted inference
 
 # Topics, used for search engines only (schema.org "knowsAbout").
 topics:

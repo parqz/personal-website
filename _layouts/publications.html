@@ -3,9 +3,9 @@ layout: page
 ---
 {{ content }}
 <div class="filter" role="group" aria-label="Show publications by research area">
-  <button type="button" data-filter="all" aria-pressed="true">All</button>
+  <button type="button" class="all" data-filter="all" aria-pressed="true">All</button>
   {%- for area in site.data.research %}
-  <button type="button" data-filter="{{ area.id }}" aria-pressed="false">{{ area.title }}</button>
+  <button type="button" class="c-{{ area.color | default: 'indigo' }}" data-filter="{{ area.id }}" aria-pressed="false">{{ area.title | escape }}</button>
   {%- endfor %}
 </div>
 

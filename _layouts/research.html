@@ -4,26 +4,30 @@ layout: page
 {{ content }}
 <nav class="jump" aria-label="Research areas">
   {%- for area in site.data.research %}
-  <a href="#{{ area.id }}">{{ area.title }}</a>
+  <a class="c-{{ area.color | default: 'indigo' }}" href="#{{ area.id }}">{{ area.title | escape }}</a>
   {%- endfor %}
 </nav>
 
 {% for area in site.data.research %}
-<section class="area" id="{{ area.id }}">
-  <h2>{{ area.title }}</h2>
+<section class="area c-{{ area.color | default: 'indigo' }}" id="{{ area.id }}">
+  <h2 class="sec-title">{{ area.title | escape }}</h2>
   <p>{{ area.intro }}</p>
 
-  {%- for project in area.projects %}
-  <article class="project">
-    <h3>{{ project.title }}</h3>
-    <p class="project-status">{{ project.status }}</p>
-    <dl class="rows">
-      {%- for row in project.rows %}
-      <div><dt>{{ row.label }}</dt><dd>{{ row.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</dd></div>
-      {%- endfor %}
-    </dl>
-  </article>
-  {%- endfor %}
+  <div class="projects">
+    {%- for project in area.projects %}
+    <article class="project">
+      <div class="project-head">
+        <h3>{{ project.title }}</h3>
+        <p class="project-status">{{ project.status | escape }}</p>
+      </div>
+      <dl class="rows">
+        {%- for row in project.rows %}
+        <div><dt>{{ row.label }}</dt><dd>{{ row.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</dd></div>
+        {%- endfor %}
+      </dl>
+    </article>
+    {%- endfor %}
+  </div>
 
   {%- assign area_pubs = site.data.publications | where: "area", area.id %}
   {%- if area_pubs.size > 0 %}

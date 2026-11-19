@@ -1,5 +1,5 @@
 # Site settings for parsaghazvinian.com (Jekyll, built by GitHub Pages).
-# Content lives in _data/ and _pages/; blog posts in _posts/. See README.md.
+# Content lives in _data/ and _pages/; blog posts in _posts/.
 
 title: Parsa Ghazvinian
 tagline: Ph.D. Candidate in Computer Science, Georgia State University
@@ -36,7 +36,7 @@ feed:
   path: /feed.xml
 # Show "Blog" in the navigation: auto = only once there is at least one post; true; false
 blog_in_nav: auto
-# Comments under posts (off until set up; see README.md "Comments")
+# Comments under posts: off until giscus is set up (repo_id and category_id come from giscus.app)
 comments:
   provider: none        # none | giscus
   giscus:
