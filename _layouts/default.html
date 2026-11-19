@@ -3,6 +3,12 @@
 {%- for f in site.static_files -%}
   {%- if f.path == site.data.profile.photo -%}{%- assign has_photo = true -%}{%- break -%}{%- endif -%}
 {%- endfor -%}
+{%- comment %} Blog tab: always, never, or only once a post exists. {% endcomment -%}
+{%- assign show_blog = false -%}
+{%- if site.blog_in_nav == true -%}{%- assign show_blog = true -%}{%- endif -%}
+{%- if site.blog_in_nav == "auto" and site.posts.size > 0 -%}{%- assign show_blog = true -%}{%- endif -%}
+{%- assign p = site.data.profile -%}
+{%- assign v = site.time | date: "%Y%m%d%H%M" -%}
 <!doctype html>
 <html lang="{{ site.lang | default: 'en' }}">
 <head>
@@ -11,17 +17,38 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 {% include icons.html %}
-<div class="shell">
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ p.name }}</a>
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg class="ico"><use href="#i-menu"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Sections">
+      {%- for item in site.data.nav %}
+      {%- assign current = false -%}
+      {%- if page.url == item.url or page.url == item.also -%}{%- assign current = true -%}{%- endif %}
+      <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
+      {%- endfor %}
+      {%- if show_blog %}
+      <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+      {%- endif %}
+      <a class="nav-cv" href="{{ p.links.cv | relative_url }}" target="_blank" rel="noopener">CV</a>
+    </nav>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch between light and dark theme"><svg class="ico ico-moon"><use href="#i-moon"/></svg><svg class="ico ico-sun"><use href="#i-sun"/></svg></button>
+  </div>
+</header>
+
+<div class="page">
 {% include sidebar.html %}
   <main id="main">
 {{ content }}
-{% include footer.html %}
   </main>
 </div>
+
+{% include footer.html %}
+
 <dialog class="viewer" id="viewer" aria-label="Image viewer">
   <button type="button" class="viewer-close" id="viewerClose">Close</button>
 </dialog>
-{%- assign v = site.time | date: "%Y%m%d%H%M" %}
 <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ v }}" defer></script>
 {%- if page.math %}
 <script>

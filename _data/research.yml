@@ -1,25 +1,15 @@
-# The three research areas. Used by the home page (figure, summaries) and the Research page.
+# The three research areas, shown on the Research page.
 #
 # id:       used in links (/research/#id) and as "area" in _data/publications.yml
-# summary:  one sentence for the home page
-# cite:     publication ids cited after the summary
-# figure:   the home-page figure; mode is fixed (compute | labels | encrypted); label, caption and link text are yours
-# intro:    opening paragraph on the Research page
-# projects: each has a title, a status line, optional cite (publication id), and rows of label + text
+# summary:  one sentence under the area title
+# intro:    opening paragraph of the area
+# projects: each has a title, a status line, and rows of label + text
 
 - id: efficiency
   title: "Efficiency & optimization"
   summary: >-
     Testing what actually makes fine-tuning and inference cheaper, from rank allocation in LoRA to
     how visual-token pruning in vision-language models is evaluated.
-  cite: [lora-rank]
-  figure:
-    mode: compute
-    label: Limited compute
-    link: More on efficiency and optimization
-    caption: >-
-      Keep the cells that matter most and drop the rest: here, the top fifth. My work tests when
-      savings like this are real, and how to measure them fairly.
   intro: >-
     I study methods that make modern AI systems cheaper to adapt and run, including
     parameter-efficient fine-tuning, pruning and sparsity, and efficient inference for large
@@ -28,7 +18,6 @@
   projects:
     - title: "Does learned rank allocation help LoRA?"
       status: "Under review, ACL Rolling Review"
-      cite: lora-rank
       rows:
         - label: Question
           text: >-
@@ -66,15 +55,6 @@
   summary: >-
     Authority bias in LLM-based search engines, and learning from noisy, disagreeing human
     annotators.
-  cite: [authority-bias, nra-embed]
-  figure:
-    mode: labels
-    label: Noisy labels
-    link: More on robust and trustworthy AI
-    caption: >-
-      Two annotators label every cell. Along the boundaries they genuinely disagree; scattered
-      elsewhere, some labels are simply wrong. My work builds models that keep the disagreement and
-      resist the noise.
   intro: >-
     My work in NLP and LLMs looks at how models behave under noisy, subjective or potentially
     biased conditions: learning from annotator disagreement, modeling subjective human judgments,
@@ -82,7 +62,6 @@
   projects:
     - title: "Authority bias in LLM-based search engines"
       status: "EMNLP 2026 (Main Conference)"
-      cite: authority-bias
       rows:
         - label: Question
           text: >-
@@ -99,7 +78,6 @@
             it, so auditing their explanations underestimates the bias.
     - title: "Learning from disagreement under noise"
       status: "Findings of EMNLP 2026"
-      cite: nra-embed
       rows:
         - label: Question
           text: >-
@@ -118,14 +96,6 @@
   title: "Privacy-preserving ML"
   summary: >-
     Making encrypted inference with homomorphic encryption faster and lighter on memory.
-  cite: [mofhei, memory-efficient-he, packing-aware-pruning]
-  figure:
-    mode: encrypted
-    label: Encrypted data
-    link: More on privacy-preserving ML
-    caption: >-
-      The model computes on scrambled cells and never sees the input; only the key holder can read
-      the result. My work makes this kind of encrypted inference faster and lighter on memory.
   intro: >-
     Homomorphic encryption lets a model run on data it never sees in the clear, but encrypted
     inference is still far slower and more memory-hungry than ordinary inference. My work reduces
@@ -133,7 +103,6 @@
   projects:
     - title: "MOFHEI"
       status: "IEEE TPS 2024"
-      cite: mofhei
       rows:
         - label: Approach
           text: >-
@@ -145,7 +114,6 @@
             The framework is [open source](https://github.com/inspire-lab/MOFHEI).
     - title: "Memory-efficient encrypted inference"
       status: "ACNS 2024"
-      cite: memory-efficient-he
       rows:
         - label: Approach
           text: >-
@@ -157,7 +125,6 @@
             low-cost hardware.
     - title: "Packing-aware pruning"
       status: "IEEE S&P 2023 (extended abstract)"
-      cite: packing-aware-pruning
       rows:
         - label: Approach
           text: >-

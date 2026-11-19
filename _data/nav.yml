@@ -1,9 +1,21 @@
-# Sidebar navigation, in order. "Blog" is added automatically (see blog_in_nav in _config.yml).
+# The tabs in the top bar, in order.
+# url: "/#name" jumps to a section of the home page; "/name/" opens a page.
+# also: a page on which this tab is also shown as the current one.
+# "Blog" and "CV" are added automatically (see blog_in_nav in _config.yml).
 - title: About
-  url: /
+  url: /#about
+- title: News
+  url: /#news
+- title: Publications
+  url: /#publications
+  also: /publications/
 - title: Research
   url: /research/
-- title: Publications
-  url: /publications/
+- title: Education
+  url: /#education
 - title: Experience
-  url: /experience/
+  url: /#experience
+- title: Honors
+  url: /#honors
+- title: Service
+  url: /#service

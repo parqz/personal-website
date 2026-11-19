@@ -1,8 +1,29 @@
-/* Site-wide behaviour: theme switch, publication and tag filters, image viewer. No dependencies. */
+/* Site-wide behaviour: menu, theme switch, publication and tag filters, image viewer. No dependencies. */
 (function () {
   'use strict';
   var root = document.documentElement;
   function all(sel, ctx) { return [].slice.call((ctx || document).querySelectorAll(sel)); }
+
+  /* ---------- Menu button (narrow screens): show or hide the tabs ---------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('nav');
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    all('a', nav).forEach(function (a) {
+      a.addEventListener('click', function () { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+    });
+  }
+
+  /* ---------- News: show the "(scroll)" hint only when the list is taller than its box ---------- */
+  var newsBox = document.getElementById('newsBox');
+  var newsHint = document.querySelector('.news-hint');
+  function checkNews() { if (newsBox && newsHint) newsHint.hidden = newsBox.scrollHeight <= newsBox.clientHeight + 2; }
+  checkNews();
+  window.addEventListener('load', checkNews);
+  window.addEventListener('resize', checkNews);
 
   /* ---------- Theme: follows the system until the visitor chooses ---------- */
   var themeBtn = document.getElementById('themeBtn');

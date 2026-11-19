@@ -4,21 +4,19 @@ layout: page
 {{ content }}
 <nav class="jump" aria-label="Research areas">
   {%- for area in site.data.research %}
-  <a href="#{{ area.id }}"><span class="cell area-{{ area.id }}" aria-hidden="true"></span>{{ area.title }}</a>
+  <a href="#{{ area.id }}">{{ area.title }}</a>
   {%- endfor %}
 </nav>
 
 {% for area in site.data.research %}
 <section class="area" id="{{ area.id }}">
-  <h2><span class="cell area-{{ area.id }}" aria-hidden="true"></span>{{ area.title }}</h2>
-  <p class="area-intro">{{ area.intro }}</p>
+  <h2>{{ area.title }}</h2>
+  <p>{{ area.intro }}</p>
 
   {%- for project in area.projects %}
   <article class="project">
-    <header class="project-head">
-      <h3>{{ project.title }}{% if project.cite %}&nbsp;{% include cite.html keys=project.cite %}{% endif %}</h3>
-      <p class="project-status">{{ project.status }}</p>
-    </header>
+    <h3>{{ project.title }}</h3>
+    <p class="project-status">{{ project.status }}</p>
     <dl class="rows">
       {%- for row in project.rows %}
       <div><dt>{{ row.label }}</dt><dd>{{ row.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</dd></div>
@@ -30,13 +28,9 @@ layout: page
   {%- assign area_pubs = site.data.publications | where: "area", area.id %}
   {%- if area_pubs.size > 0 %}
   <h3 class="area-papers">Papers</h3>
-  <ol class="pubs pubs-compact">
-    {%- for pub in site.data.publications %}
-      {%- if pub.area == area.id %}
-{% include pub.html pub=pub n=forloop.index anchor=false %}
-      {%- endif %}
-    {%- endfor %}
-  </ol>
+  {%- for pub in area_pubs %}
+{% include pub.html pub=pub anchor=false compact=true %}
+  {%- endfor %}
   {%- endif %}
 </section>
 {% endfor %}

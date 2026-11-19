@@ -1,4 +1,4 @@
-# Honors and awards, newest first. Shown on the Experience page.
+# Honors and awards, newest first. Shown on the home page. Leave year empty if the text already has it.
 
 - title: Student Scholarship Award
   from: Professional Organization of Iranian Americans (POOIA)
@@ -6,4 +6,4 @@
 
 - title: Student travel grants
   from: IEEE S&P (2023) and IEEE TPS (2024)
-  year: "2023 to 2024"
+  year: ""
