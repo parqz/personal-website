@@ -1,15 +1,30 @@
 ---
 layout: default
 ---
-{%- assign words = content | strip_html | number_of_words -%}
-{%- assign minutes = words | divided_by: 220 | at_least: 1 -%}
-<article class="post">
+{%- comment -%}
+  One blog post. Optional front matter, beyond title, description and tags:
+    image, image_alt   the cover, shown here and in the list of posts (and used for link previews)
+    updated            a date, shown as "Updated ..."
+    toc: true          adds an "In this article" list built from the section headings
+    follows_up         the file name (without date and .md) of an earlier post this one continues
+    original_url       where the post first appeared, e.g. on LinkedIn
+    kind               overrides the label that is otherwise worked out (Article, Short post, Follow-up)
+{%- endcomment -%}
+{%- include post-info.html doc=page -%}
+{%- assign p_minutes = info_minutes -%}
+{%- assign p_kind = info_kind -%}
+{%- assign p_cover = info_cover -%}
+{%- assign p_parent = info_parent -%}
+{%- assign p_tint = info_tint -%}
+{%- assign followups = site.posts | where: "follows_up", page.slug | reverse -%}
+<article class="post {{ p_tint }}">
   <header class="post-head">
     <p class="post-back"><a href="{{ '/blog/' | relative_url }}">All posts</a></p>
     <h1>{{ page.title }}</h1>
     <p class="post-meta">
+      <span class="post-kind">{{ p_kind }}</span>
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-      <span>{{ minutes }} min read</span>
+      <span>{{ p_minutes }} min read</span>
       {%- if page.updated %}
       <span>Updated {{ page.updated | date: "%B %-d, %Y" }}</span>
       {%- endif %}
@@ -23,17 +38,67 @@ layout: default
     {%- endif %}
   </header>
 
+  {%- if p_parent %}
+  <p class="notice"><span>This post follows <a href="{{ p_parent.url | relative_url }}">{{ p_parent.title }}</a>.</span></p>
+  {%- endif %}
+
+  {%- if p_cover %}
+  <figure class="post-hero">
+    <img src="{{ p_cover | relative_url }}" alt="{{ page.image_alt | default: '' | escape }}">
+  </figure>
+  {%- endif %}
+
+  {%- if page.toc %}
+  {%- comment %} Filled in by main.js from the headings of the post; stays hidden without scripts. {% endcomment %}
+  <nav class="toc" id="toc" aria-label="In this article" hidden>
+    <details open>
+      <summary>In this article</summary>
+      <ol></ol>
+    </details>
+  </nav>
+  {%- endif %}
+
   <div class="prose post-body">
 {{ content }}
   </div>
 
-  {%- if page.previous or page.next %}
+  {%- if page.original_url or followups.size > 0 %}
+  <footer class="post-foot">
+    {%- if page.original_url %}
+    {%- assign parts = page.original_url | split: "/" -%}
+    {%- assign host = parts[2] | remove_first: "www." -%}
+    {%- if host contains "linkedin.com" %}{% assign host = "LinkedIn" %}{% endif %}
+    <p class="post-origin">First published on <a href="{{ page.original_url }}" target="_blank" rel="noopener">{{ host }}</a> on {{ page.date | date: "%B %-d, %Y" }}.</p>
+    {%- endif %}
+    {%- if followups.size > 0 %}
+    <section class="post-more" aria-labelledby="more-title">
+      <h2 id="more-title">Follow-up</h2>
+      <ul>
+        {%- for later in followups %}
+        {%- include post-info.html doc=later %}
+        <li>
+          <a href="{{ later.url | relative_url }}">{{ later.title }}</a>
+          <span>{{ later.date | date: "%B %-d, %Y" }}, {{ info_minutes }} min read</span>
+        </li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif %}
+  </footer>
+  {%- endif %}
+
+  {%- comment %} Older and newer post. A newer post that is already listed as a follow-up just above is not repeated. {% endcomment %}
+  {%- assign newer = page.next -%}
+  {%- for later in followups -%}
+    {%- if later.url == page.next.url -%}{%- assign newer = nil -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if page.previous or newer %}
   <nav class="post-nav" aria-label="More posts">
     {%- if page.previous %}
     <a class="post-prev" href="{{ page.previous.url | relative_url }}"><span>Older post</span>{{ page.previous.title }}</a>
     {%- endif %}
-    {%- if page.next %}
-    <a class="post-next" href="{{ page.next.url | relative_url }}"><span>Newer post</span>{{ page.next.title }}</a>
+    {%- if newer %}
+    <a class="post-next" href="{{ newer.url | relative_url }}"><span>Newer post</span>{{ newer.title }}</a>
     {%- endif %}
   </nav>
   {%- endif %}

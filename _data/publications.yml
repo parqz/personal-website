@@ -8,10 +8,14 @@
 #             paper: the published version (shown as "Paper"), or
 #             arxiv: the arXiv page (shown as "arXiv"; used only when there is no "paper" link)
 #           and others follow it: code, dataset, slides, poster
+#           (a poster kept in this repository is linked as /assets/posters/name.pdf)
 # selected: true -> also shown on the home page
-# image:    banner, figure or poster shown beside the paper, e.g. /assets/img/papers/nra-embed.png
-#           (without one, a coloured tile with the venue name is shown)
+# image:    banner or figure shown beside the paper, e.g. /assets/img/papers/nra-embed.png
+#           (without one, a coloured tile with the venue name is shown). It sits in a wide frame,
+#           so a landscape image works best.
 # image_alt: one sentence describing the image, for screen readers
+# image_full: optional. A different, larger image that opens when the banner is selected, e.g. the
+#           whole poster when the banner shows only part of it. Without it, the banner itself opens.
 # award:    optional, e.g. "Best Paper Award"
 #
 # Papers under anonymous review are not listed here until they are accepted.
@@ -28,6 +32,8 @@
   links:
     arxiv: https://arxiv.org/abs/2611.11833
     code: https://github.com/amir-sbg/VLM-Answer-or-Defer
+  image: /assets/img/papers/answer-or-defer.png
+  image_alt: "Three figures from the paper: a pipeline in which a vision-language model answers a question about a brain MRI slice, states its confidence, and then either acts or defers to a clinician; four example slices on which the model states 0.95 confidence, three of them answered wrongly; and charts of stated confidence by outcome and by dataset"
 
 - id: authority-bias
   title: "Authority Bias in Conversational Search Engines for Academic Paper Recommendation"
@@ -42,8 +48,10 @@
     paper: https://aclanthology.org/2026.emnlp-main.1069/
     code: https://github.com/jinaduuthman/Authority-Bias-In-Conversational-Search-Engine
     dataset: https://huggingface.co/datasets/uthmanjinadu/authority-bias-paper-recommendation
+    poster: /assets/posters/authority-bias-emnlp-2026.pdf
   image: /assets/img/papers/authority-bias.png
-  image_alt: "Research showcase slide: 39% of an AI's paper recommendations change when only the prestige signals (author fame, venue, citation counts) are altered and the paper's content stays identical"
+  image_alt: "The EMNLP 2026 poster, shown whole, beside two of its figures: the counterfactual design, in which only a paper's authority metadata changes, and a bar chart of the gap between what models say about prestige and what they do"
+  image_full: /assets/img/papers/authority-bias-poster.webp
 
 - id: nra-embed
   title: "When Disagreement Meets Noise: Noise Robust Annotator Embeddings for Subjective NLP"
@@ -57,8 +65,10 @@
   links:
     paper: https://aclanthology.org/2026.findings-emnlp.2078/
     code: https://github.com/KevinJ-30/Subjective_Annotators
+    poster: /assets/posters/nra-embed-emnlp-2026.pdf
   image: /assets/img/papers/nra-embed.png
-  image_alt: "Line chart from the paper: mean annotator F1 of four models as label noise rises from 0 to 40 percent"
+  image_alt: "The EMNLP 2026 poster, shown whole, beside two of its figures: the NRA-Embed model diagram, and a line chart of how much of its clean-data F1 each of four methods keeps as label noise rises to 40 percent"
+  image_full: /assets/img/papers/nra-embed-poster.webp
 
 - id: mofhei
   title: "MOFHEI: Model Optimizing Framework for Fast and Efficient Homomorphically Encrypted Neural Network Inference"

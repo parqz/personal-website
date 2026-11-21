@@ -1,7 +1,7 @@
 ---
 layout: blog
-title: Blog
+title: Blogs
 permalink: /blog/
-description: Notes on papers and methods in efficient and trustworthy AI, by Parsa Ghazvinian.
-lead: Notes on papers and methods in efficient and trustworthy AI.
+description: Articles and shorter posts on papers and methods in efficient and trustworthy AI, by Parsa Ghazvinian.
+lead: Articles and shorter posts on papers and methods in efficient and trustworthy AI, newest first.
 ---

@@ -1,7 +1,7 @@
 # The tabs in the top bar, in order.
 # url: "/#name" jumps to a section of the home page; "/name/" opens a page.
 # also: a page on which this tab is also shown as the current one.
-# "Blog" and "CV" are added automatically (see blog_in_nav in _config.yml).
+# "Blogs" and "CV" are added automatically (see blog_in_nav in _config.yml).
 - title: About
   url: /#about
 - title: Research

@@ -34,7 +34,7 @@ permalink: /blog/:title/
 excerpt_separator: "<!--more-->"
 feed:
   path: /feed.xml
-# Show "Blog" in the navigation: auto = only once there is at least one post; true; false
+# Show the "Blogs" tab in the navigation: auto = only once there is at least one post; true; false
 blog_in_nav: auto
 # Comments under posts: off until giscus is set up (repo_id and category_id come from giscus.app)
 comments:

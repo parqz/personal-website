@@ -1,0 +1,46 @@
+{%- comment -%}
+  Works out a few facts about one blog post, for the list of posts and for the post page.
+  Usage: {% include post-info.html doc=post %}
+  It prints nothing. It sets these for the template that includes it:
+    info_minutes  reading time in minutes
+    info_kind     the label of the post: its own "kind" if it has one, otherwise "Follow-up" (it has
+                  follows_up), "Article" (six minutes or longer) or "Short post"
+    info_cover    the post's own image; empty when the post only has the site-wide default image
+    info_parent   the earlier post named in follows_up; empty when there is none
+    info_tint     the post's accent colour class. Colours go in turn from the oldest post, so a post
+                  keeps its colour when newer ones are added
+{%- endcomment -%}
+{%- assign doc = include.doc -%}
+{%- assign info_words = doc.content | strip_html | number_of_words -%}
+{%- assign info_minutes = info_words | divided_by: 220 | at_least: 1 -%}
+
+{%- assign site_image = nil -%}
+{%- for d in site.defaults -%}
+  {%- if d.values.image and d.scope.type == nil -%}{%- assign site_image = d.values.image -%}{%- endif -%}
+{%- endfor -%}
+{%- assign info_cover = nil -%}
+{%- if doc.image and doc.image != site_image -%}{%- assign info_cover = doc.image -%}{%- endif -%}
+
+{%- assign info_parent = nil -%}
+{%- if doc.follows_up -%}
+  {%- for other in site.posts -%}
+    {%- if other.slug == doc.follows_up -%}{%- assign info_parent = other -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign info_kind = doc.kind -%}
+{%- unless info_kind -%}
+  {%- if doc.follows_up -%}{%- assign info_kind = "Follow-up" -%}
+  {%- elsif info_minutes >= 6 -%}{%- assign info_kind = "Article" -%}
+  {%- else -%}{%- assign info_kind = "Short post" -%}
+  {%- endif -%}
+{%- endunless -%}
+
+{%- assign tints = "c-indigo,c-rose,c-apricot,c-teal" | split: "," -%}
+{%- assign info_tint = tints[0] -%}
+{%- for other in site.posts -%}
+  {%- if other.url == doc.url -%}
+    {%- assign from_oldest = site.posts.size | minus: forloop.index | modulo: 4 -%}
+    {%- assign info_tint = tints[from_oldest] -%}
+  {%- endif -%}
+{%- endfor -%}

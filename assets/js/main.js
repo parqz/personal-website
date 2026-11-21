@@ -1,4 +1,4 @@
-/* Site-wide behaviour: menu, current tab, theme switch, publication and tag filters, image viewer. No dependencies. */
+/* Site-wide behaviour: menu, current tab, theme switch, publication and tag filters, list of sections in a post, image viewer. No dependencies. */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -90,7 +90,7 @@
     });
   }
 
-  /* ---------- Blog: show one tag (also via /blog/?tag=name) ---------- */
+  /* ---------- Blogs: show the posts with one tag (also via /blog/?tag=name) ---------- */
   var tagBtns = all('[data-tag]');
   function showTag(tag) {
     var found = false;
@@ -100,9 +100,16 @@
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     if (!found) { tag = 'all'; tagBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-tag') === 'all' ? 'true' : 'false'); }); }
-    all('.post-list > li[data-tags]').forEach(function (li) {
-      var tags = li.getAttribute('data-tags').split('|');
-      li.hidden = !(tag === 'all' || tags.indexOf(tag) > -1);
+    all('.timeline').forEach(function (list) {
+      var shown = all('[data-tags]', list).filter(function (li) {
+        var tags = li.getAttribute('data-tags').split('|');
+        li.hidden = !(tag === 'all' || tags.indexOf(tag) > -1);
+        return !li.hidden;
+      });
+      /* the rail of the timeline stops at the last post on show; a year with nothing to show is hidden */
+      shown.forEach(function (li, i) { li.classList.toggle('tl-last', i === shown.length - 1); });
+      var group = list.closest('.year-group');
+      if (group) group.hidden = shown.length === 0;
     });
   }
   if (tagBtns.length) {
@@ -114,21 +121,61 @@
     if (wanted) showTag(wanted);
   }
 
-  /* ---------- Image viewer: figures in posts and publication thumbnails ---------- */
+  /* ---------- Posts: the "In this article" list, built from the headings (front matter: toc: true) ---------- */
+  var toc = document.getElementById('toc');
+  if (toc) {
+    var tocList = toc.querySelector('ol');
+    var section = null;      /* the list under the current h2 */
+    var entries = 0;
+    all('.post-body h2[id], .post-body h3[id]').forEach(function (h) {
+      if (h.classList.contains('no_toc')) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      if (h.tagName === 'H3' && section) {
+        if (!section.sub) { section.sub = document.createElement('ol'); section.li.appendChild(section.sub); }
+        section.sub.appendChild(li);
+      } else {
+        tocList.appendChild(li);
+        section = h.tagName === 'H2' ? { li: li, sub: null } : null;
+      }
+      entries++;
+    });
+    if (entries > 1) {
+      if (window.matchMedia && matchMedia('(max-width: 640px)').matches) toc.querySelector('details').open = false;
+      toc.hidden = false;
+    }
+  }
+
+  /* ---------- Image viewer: figures in posts, photos and publication banners ---------- */
   var viewer = document.getElementById('viewer');
   if (viewer && viewer.showModal) {
     var viewerImg = document.createElement('img');
     viewerImg.alt = '';
     viewer.appendChild(viewerImg);
+    /* A tall image, such as a poster, is shown at reading width and scrolls; anything else is fitted to the window. */
+    viewerImg.addEventListener('load', function () {
+      viewer.classList.remove('loading');
+      viewer.classList.toggle('tall', viewerImg.naturalHeight > viewerImg.naturalWidth * 1.2);
+    });
+    viewerImg.addEventListener('error', function () { viewer.classList.remove('loading'); });
     all('.post-body img, [data-zoom]').forEach(function (el) {
       if (el.closest('a') && !el.closest('[data-zoom]')) return;   /* linked images keep their link */
       el.addEventListener('click', function (ev) {
         var img = el.tagName === 'IMG' ? el : el.querySelector('img');
         if (!img) return;
         ev.preventDefault();
-        viewerImg.src = el.getAttribute('href') || img.currentSrc || img.src;
-        viewerImg.alt = img.alt || '';
+        var src = el.getAttribute('href') || img.currentSrc || img.src;
+        if (viewerImg.getAttribute('src') !== src) {      /* a different image: hide the old one until the new one has loaded */
+          viewer.classList.remove('tall');
+          viewer.classList.add('loading');
+          viewerImg.src = src;
+        }
+        viewerImg.alt = el.getAttribute('data-alt') || img.alt || '';
         viewer.showModal();
+        viewer.scrollTop = 0;
       });
     });
     document.getElementById('viewerClose').addEventListener('click', function () { viewer.close(); });

@@ -3,7 +3,7 @@
 {%- for f in site.static_files -%}
   {%- if f.path == site.data.profile.photo -%}{%- assign has_photo = true -%}{%- break -%}{%- endif -%}
 {%- endfor -%}
-{%- comment %} Blog tab: always, never, or only once a post exists. {% endcomment -%}
+{%- comment %} Blogs tab: always, never, or only once a post exists. {% endcomment -%}
 {%- assign show_blog = false -%}
 {%- if site.blog_in_nav == true -%}{%- assign show_blog = true -%}{%- endif -%}
 {%- if site.blog_in_nav == "auto" and site.posts.size > 0 -%}{%- assign show_blog = true -%}{%- endif -%}
@@ -33,7 +33,7 @@
       <a class="{{ tints[tint] }}" href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
       {%- endfor %}
       {%- if show_blog %}
-      <a class="c-indigo" href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+      <a class="c-indigo" href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blogs</a>
       {%- endif %}
       <a class="nav-cv" href="{{ p.links.cv | relative_url }}" target="_blank" rel="noopener">CV</a>
     </nav>
@@ -52,6 +52,7 @@
 
 <dialog class="viewer" id="viewer" aria-label="Image viewer">
   <button type="button" class="viewer-close" id="viewerClose">Close</button>
+  <p class="viewer-note">Loading the image…</p>
 </dialog>
 <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ v }}" defer></script>
 {%- if page.math %}

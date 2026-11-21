@@ -1,6 +1,10 @@
 ---
 layout: page
 ---
+{%- comment -%}
+  The Blogs page: every post on a timeline, newest first, grouped by year, each with its cover.
+  A post is a file in _posts/. The tag buttons appear once the posts use more than one tag.
+{%- endcomment -%}
 {{ content }}
 {%- assign all_tags = "" | split: "" %}
 {%- for post in site.posts %}
@@ -8,31 +12,29 @@ layout: page
     {%- unless all_tags contains tag %}{% assign all_tags = all_tags | push: tag %}{% endunless %}
   {%- endfor %}
 {%- endfor %}
-{%- assign all_tags = all_tags | sort %}
+{%- assign all_tags = all_tags | sort_natural %}
 
 {% if site.posts.size == 0 %}
 <p class="empty">No posts yet. The first one will appear here, and in the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
 {% else %}
 {%- if all_tags.size > 1 %}
-<div class="filter" role="group" aria-label="Show posts by tag">
-  <button type="button" data-tag="all" aria-pressed="true">All posts</button>
+<div class="filter c-indigo" role="group" aria-label="Show posts by tag">
+  <button type="button" class="all" data-tag="all" aria-pressed="true">All posts</button>
   {%- for tag in all_tags %}
   <button type="button" data-tag="{{ tag | escape }}" aria-pressed="false">{{ tag }}</button>
   {%- endfor %}
 </div>
 {%- endif %}
 
-<ul class="post-list">
-  {%- for post in site.posts %}
-  <li data-tags="{{ post.tags | join: '|' | escape }}">
-    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    {%- if post.description %}
-    <p>{{ post.description }}</p>
-    {%- else %}
-    <p>{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-    {%- endif %}
-  </li>
-  {%- endfor %}
-</ul>
+{%- assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
+{%- for year in years %}
+<section class="year-group" aria-label="Posts from {{ year.name }}">
+  <h2 class="year">{{ year.name }}</h2>
+  <ol class="timeline">
+    {%- for post in year.items %}
+{% include post-card.html post=post last=forloop.last %}
+    {%- endfor %}
+  </ol>
+</section>
+{%- endfor %}
 {% endif %}

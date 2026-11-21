@@ -7,8 +7,9 @@
 <div class="pub c-{{ pub_area.color | default: 'indigo' }}{% if include.compact %} pub-compact{% endif %}"{% unless include.anchor == false %} id="{{ pub.id }}"{% endunless %} data-area="{{ pub.area }}">
   {%- unless include.compact %}
   {%- if pub.image %}
+  {%- comment %} Selecting the banner opens it larger, or opens image_full (for example the whole poster) when one is given. {% endcomment %}
   <div class="pub-thumb">
-    <a href="{{ pub.image | relative_url }}" data-zoom title="Enlarge the image"><img src="{{ pub.image | relative_url }}" alt="{{ pub.image_alt | default: 'Figure from the paper' | escape }}" loading="lazy"></a>
+    <a href="{{ pub.image_full | default: pub.image | relative_url }}" data-zoom{% if pub.image_full %} data-alt="Full image for the paper: {{ pub.title | escape }}"{% endif %} title="{% if pub.image_full %}Open the full image{% else %}Enlarge the image{% endif %}"><img src="{{ pub.image | relative_url }}" alt="{{ pub.image_alt | default: 'Figure from the paper' | escape }}" loading="lazy"></a>
   </div>
   {%- else %}
   <div class="pub-thumb pub-thumb-empty" aria-hidden="true"><span>{{ pub.venue_short | default: pub.venue }}</span></div>
