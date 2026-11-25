@@ -6,7 +6,7 @@ permalink: /
 
 I'm a Ph.D. candidate in Computer Science at Georgia State University, advised by
 Dr. Rajshekhar Sunderraman and Dr. Yi Ding (University of Tennessee, Knoxville), and a graduate
-research assistant at GSU's CHAI Center (previously the INSPIRE Center and, as a Presidential Fellow, the TCV Initiative). I work at the intersection of **efficient and trustworthy
+research assistant at GSU's CHAI Center. I work at the intersection of **efficient and trustworthy
 AI**: building AI systems that are not only capable, but also computationally efficient, reliable,
 privacy-preserving and practical to deploy.
 
