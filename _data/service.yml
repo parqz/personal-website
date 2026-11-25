@@ -1,9 +1,14 @@
 # Academic service, newest first. Shown on the home page.
 
+- role: Reviewer
+  venue: IEEE Transactions on Information Forensics and Security (T-IFS)
+  year: 2025–2026
+  note: Reviewed 2 submissions in cryptography and systems security in 2025; invited again in 2026.
+
 - role: Secondary reviewer
   venue: ACL Rolling Review (ARR)
   year: 2026
-  note: Co-reviewed 2 NLP submissions with the primary reviewer.
+  note: Co-reviewed 4 NLP submissions with the primary reviewers.
 
 - role: Reviewer
   venue: International Joint Conference on Neural Networks (IJCNN)
@@ -14,8 +19,3 @@
   venue: Proceedings on Privacy Enhancing Technologies (PoPETs)
   year: 2026
   note: Evaluated research artifacts for functionality and reproducibility.
-
-- role: Reviewer
-  venue: IEEE Transactions on Information Forensics and Security (T-IFS)
-  year: 2025
-  note: Reviewed 2 submissions in cryptography and systems security.
