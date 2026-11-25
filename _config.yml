@@ -4,10 +4,9 @@
 title: Parsa Ghazvinian
 tagline: Ph.D. Candidate in Computer Science, Georgia State University
 description: >-
-  Parsa Ghazvinian is a Ph.D. candidate in Computer Science at Georgia State University
-  working on efficient and trustworthy AI: parameter-efficient fine-tuning, how visual-token
-  pruning in vision-language models is evaluated, the reliability of LLM systems, and
-  encrypted inference.
+  Parsa Ghazvinian is a Ph.D. candidate in Computer Science at Georgia State University working on
+  efficient and trustworthy AI: AI efficiency and optimization; robust, equitable and trustworthy AI; and
+  privacy-preserving machine learning with homomorphic encryption.
 url: https://parsaghazvinian.com
 baseurl: ""
 lang: en

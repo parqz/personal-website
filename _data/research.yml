@@ -8,11 +8,12 @@
 # projects: each has a title, a status line, and rows of label + text
 
 - id: efficiency
-  title: "Efficiency & optimization"
+  title: "AI Efficiency & Optimization"
   color: apricot
   summary: >-
-    Testing what actually makes fine-tuning and inference cheaper, from rank allocation in LoRA to
-    how visual-token pruning in vision-language models is evaluated.
+    Methods that make modern AI systems cheaper to adapt and run: parameter-efficient fine-tuning,
+    adaptive model optimization, pruning, sparsity, and efficient inference for large language and
+    vision-language models.
   topics:
     - Parameter-efficient fine-tuning
     - Efficient inference
@@ -58,11 +59,12 @@
             overstate the remaining headroom by about 30 points.
 
 - id: trustworthy
-  title: "Robust & trustworthy AI"
+  title: "Robust, Equitable & Trustworthy AI"
   color: teal
   summary: >-
-    Authority bias in LLM-based search engines, and learning from noisy, disagreeing human
-    annotators.
+    How LLMs and NLP models behave under noisy, subjective or biased conditions: learning from
+    annotator disagreement, modeling subjective human judgments, and biases that emerge in
+    AI-assisted recommendation.
   topics:
     - Reliability of LLM systems
     - Learning from annotator disagreement
@@ -104,10 +106,11 @@
             robust as noise increases.
 
 - id: privacy
-  title: "Privacy-preserving ML"
+  title: "Privacy-Preserving Machine Learning"
   color: indigo
   summary: >-
-    Making encrypted inference with homomorphic encryption faster and lighter on memory.
+    Machine learning over encrypted data with homomorphic encryption, focused on cutting the compute
+    and memory overhead that keeps encrypted inference from being practical.
   topics:
     - Encrypted inference
   intro: >-
