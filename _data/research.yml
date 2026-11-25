@@ -42,7 +42,7 @@
             parameter budget. The choice of importance score mattered mainly when a trained adapter
             was compressed in one step.
     - title: "How should we judge visual-token pruning?"
-      status: "Paper in preparation"
+      status: "Manuscript, 2026"
       rows:
         - label: Question
           text: >-
